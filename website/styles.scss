@@ -1,0 +1,41 @@
+/*-- scss:defaults --*/
+// bootstrap variable overrides go here //
+$primary: #a0522d;
+
+
+/*-- scss:rules --*/
+
+
+// left align captions //
+.quarto-table-caption {
+    text-align: left;
+}
+
+// change side bar colour 
+#quarto-sidebar {
+  background-color: #ffffff;
+}
+
+// format captions 
+figure .figure-caption,
+figure figcaption,
+p.caption {
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+
+
+figure.quarto-float-tbl figcaption.quarto-float-caption-top {
+  font-weight: bold !important;
+  color: #000000 !important;
+  text-align: left !important;
+}
+
+
+table caption {
+  font-weight: bold !important;
+  color: #000000 !important;
+  text-align: left !important;
+  caption-side: top !important;
+}

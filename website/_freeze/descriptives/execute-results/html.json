@@ -1,0 +1,15 @@
+{
+  "hash": "cd0957211ac5316a598204cb78010830",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Descriptives\"\nauthor: \"Amelia Henry\"\ndate: today\ncode-fold: true\necho: false\n---\n\n::: {.cell}\n\n:::\n\n\n\n## Participants\n\n\n::: {.cell layout-align=\"left\"}\n::: {.cell-output-display}\n![Participant flow throughout the trial](descriptives_files/figure-html/fig-consort-1.png){#fig-consort fig-align='left' width=100%}\n:::\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

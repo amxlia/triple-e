@@ -1,0 +1,35 @@
+---
+title: "Descriptives"
+author: "Amelia Henry"
+date: today
+code-fold: true
+echo: false
+---
+```{r}
+pacman::p_load(
+    here, ggplot2, dplyr, flextable, officer, 
+    quarto, janitor, ggpubr)
+
+here::i_am("website/descriptives.qmd")
+# env_desc <- here::here("R/data/finals/descriptives_env.RData")
+# env_main <- here::here("R/data/finals/mainoutcomes_env.RData")
+env_consort <- here::here("R/data/environments/consort_env_colour.RData")
+
+load(env_consort)
+set_flextable_defaults(font.family = "Times New Roman")
+```
+
+
+## Participants
+
+```{r}
+#| label: fig-consort
+#| fig-cap: "Participant flow throughout the trial"
+#| fig-width: 9
+#| fig-height: 10.5
+#| fig-align: "left"
+#| out-width: "100%"
+#| fig-dpi: 300
+print(p) 
+```
+
