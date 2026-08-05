@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://amxlia.github.io/tripleE/covariates.html</loc>
+    <lastmod>2026-08-05T01:47:57.675Z</lastmod>
+  </url>
+  <url>
     <loc>https://amxlia.github.io/tripleE/descriptives.html</loc>
-    <lastmod>2026-08-03T04:24:16.168Z</lastmod>
+    <lastmod>2026-08-03T04:37:32.131Z</lastmod>
   </url>
   <url>
     <loc>https://amxlia.github.io/tripleE/index.html</loc>
     <lastmod>2026-07-31T07:24:08.962Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amxlia.github.io/tripleE/balance.html</loc>
+    <lastmod>2026-08-05T01:46:47.680Z</lastmod>
   </url>
 </urlset>
