@@ -4143,6 +4143,12 @@ margin: 0 0 !important;
  <span class="menu-text">Balance Checks</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./most.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MOST Full Factorial Analysis</span></a>
+  </div>
+</li>
     </ul>
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
@@ -4227,21 +4233,8 @@ margin: 0 0 !important;
 <span>         stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">n_cat</span>, <span class="st">&quot; (&quot;</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pct</span>, <span class="fl">1</span><span class="op">)</span>, <span class="st">&quot;%)&quot;</span><span class="op">)</span></span>
 <span>        <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">factor</span>, <span class="va">level</span>, <span class="va">variable</span>, <span class="va">stat</span><span class="op">)</span></span>
-<span><span class="va">tbl_covars_cat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 4
-  factor                level variable                 stat      
-  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;     
-1 strategy_gamification    -1 Gender (Woman or female) 85 (66.4%)
-2 strategy_gamification     1 Gender (Woman or female) 92 (68.1%)
-3 strategy_healthcoach     -1 Gender (Woman or female) 84 (63.2%)
-4 strategy_healthcoach      1 Gender (Woman or female) 93 (71.5%)
-5 strategy_presources      -1 Gender (Woman or female) 81 (61.8%)
-6 strategy_presources       1 Gender (Woman or female) 96 (72.7%)
-7 strategy_sms             -1 Gender (Woman or female) 88 (67.2%)
-8 strategy_sms              1 Gender (Woman or female) 89 (67.4%)</code></pre>
-</div>
-<details class="code-fold"><summary>Show/hide the code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># combine rows </span></span>
+<span></span>
+<span><span class="co"># combine rows </span></span>
 <span><span class="va">tbl_balance_descriptives</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">tbl_covars_cont</span>, <span class="va">tbl_covars_cat</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    col_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">strategy_label_list</span><span class="op">[</span><span class="va">factor</span><span class="op">]</span>, </span>
@@ -4271,7 +4264,7 @@ margin: 0 0 !important;
 <span><span class="va">tbl_balance_descriptives</span> <span class="op">&lt;-</span> <span class="va">tbl_balance_descriptives</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">set_header_df</span><span class="op">(</span><span class="va">typology</span>, key <span class="op">=</span> <span class="st">&quot;col_keys&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/merge_h.html">merge_h</a></span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1</span>, part <span class="op">=</span> <span class="st">&quot;header&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">my_flextable</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">my_flextable</span><span class="op">(</span>font_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">hline</span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1</span>, border <span class="op">=</span> <span class="fu">fp_border</span><span class="op">(</span>color <span class="op">=</span> <span class="st">&quot;black&quot;</span>, width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, part <span class="op">=</span> <span class="st">&quot;header&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">align</span><span class="op">(</span>j <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, align <span class="op">=</span> <span class="st">&quot;center&quot;</span>, part <span class="op">=</span> <span class="st">&quot;all&quot;</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">set_table_properties</span><span class="op">(</span>align <span class="op">=</span> <span class="st">&quot;left&quot;</span>, layout <span class="op">=</span> <span class="st">&quot;autofit&quot;</span><span class="op">)</span></span>
@@ -4283,116 +4276,116 @@ Table 1: Descriptives of each covariate by strategy
 </figcaption><div aria-describedby="tbl-balance-desc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div class="tabwid tabwid_left">
-<style>.cl-5c8859c4{table-layout:auto;}.cl-5c84c9b2{font-family:'Times New Roman';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5c8632a2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c8632ac{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5c8640ee{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c8640ef{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c8640f8{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c8640f9{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c8640fa{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c864102{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c864103{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c864104{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="cl-5c8859c4">
+<style>.cl-1a655624{table-layout:auto;}.cl-1a6157e0{font-family:'Times New Roman';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1a62f1cc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1a62f1d6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1a6300d6{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300e0{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300e1{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300ea{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300eb{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300ec{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300f4{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a6300f5{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-1a655624">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-5c8640ee"><p class="cl-5c8632a2"><span class="cl-5c84c9b2"></span></p></th>
-<th colspan="2" class="cl-5c8640ef"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Gamification</span></p></th>
-<th colspan="2" class="cl-5c8640ef"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Health Coaching</span></p></th>
-<th colspan="2" class="cl-5c8640ef"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Parent Resources</span></p></th>
-<th colspan="2" class="cl-5c8640ef"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Text Messages</span></p></th>
+<th class="cl-1a6300d6"><p class="cl-1a62f1cc"><span class="cl-1a6157e0"></span></p></th>
+<th colspan="2" class="cl-1a6300e0"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Gamification</span></p></th>
+<th colspan="2" class="cl-1a6300e0"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Health Coaching</span></p></th>
+<th colspan="2" class="cl-1a6300e0"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Parent Resources</span></p></th>
+<th colspan="2" class="cl-1a6300e0"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Text Messages</span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-5c8640f8"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Variable</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Off/No</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">On/Yes</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Off/No</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">On/Yes</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Off/No</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">On/Yes</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">Off/No</span></p></th>
-<th class="cl-5c8640f9"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">On/Yes</span></p></th>
+<th class="cl-1a6300e1"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Variable</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Off/No</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">On/Yes</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Off/No</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">On/Yes</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Off/No</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">On/Yes</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">Off/No</span></p></th>
+<th class="cl-1a6300ea"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">On/Yes</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Age</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.31 (1.38)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.39 (1.36)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.47 (1.35)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.23 (1.38)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.22 (1.43)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.49 (1.3)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.31 (1.37)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">15.39 (1.37)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Age</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.31 (1.38)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.39 (1.36)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.47 (1.35)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.23 (1.38)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.22 (1.43)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.49 (1.3)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.31 (1.37)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">15.39 (1.37)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Performance Expectancy</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.42 (0.94)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.34 (1.01)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.39 (0.95)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.38 (1.01)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.31 (0.94)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.45 (1.01)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.32 (1.02)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.44 (0.93)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Performance Expectancy</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.42 (0.94)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.34 (1.01)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.39 (0.95)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.38 (1.01)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.31 (0.94)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.45 (1.01)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.32 (1.02)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.44 (0.93)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Hedonic Motivations</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.66 (1.19)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.54 (1.32)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.63 (1.27)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.56 (1.26)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.53 (1.28)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.67 (1.24)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.62 (1.32)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.57 (1.2)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Hedonic Motivations</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.66 (1.19)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.54 (1.32)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.63 (1.27)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.56 (1.26)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.53 (1.28)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.67 (1.24)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.62 (1.32)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.57 (1.2)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Habit</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.21 (1.43)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">2.9 (1.29)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.06 (1.27)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.04 (1.46)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">2.96 (1.34)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.14 (1.4)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.11 (1.49)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">2.98 (1.24)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Habit</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.21 (1.43)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">2.9 (1.29)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.06 (1.27)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.04 (1.46)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">2.96 (1.34)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.14 (1.4)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.11 (1.49)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">2.98 (1.24)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Perceived Risk</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.81 (1.49)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.65 (1.49)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.68 (1.52)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.77 (1.46)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.81 (1.5)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.65 (1.48)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.7 (1.44)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">3.75 (1.54)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Perceived Risk</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.81 (1.49)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.65 (1.49)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.68 (1.52)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.77 (1.46)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.81 (1.5)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.65 (1.48)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.7 (1.44)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">3.75 (1.54)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Health Consciousness</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.99 (1.23)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.06 (1.21)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.03 (1.25)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.01 (1.2)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.94 (1.22)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.1 (1.22)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.95 (1.21)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">5.09 (1.22)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Health Consciousness</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.99 (1.23)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.06 (1.21)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.03 (1.25)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.01 (1.2)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.94 (1.22)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.1 (1.22)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.95 (1.21)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">5.09 (1.22)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c8640fa"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Satisfaction</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.79 (1.11)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.83 (1.24)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.89 (1.19)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.72 (1.17)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.77 (1.11)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.85 (1.24)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.8 (1.22)</span></p></td>
-<td class="cl-5c864102"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">4.82 (1.14)</span></p></td>
+<td class="cl-1a6300eb"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Satisfaction</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.79 (1.11)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.83 (1.24)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.89 (1.19)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.72 (1.17)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.77 (1.11)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.85 (1.24)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.8 (1.22)</span></p></td>
+<td class="cl-1a6300ec"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">4.82 (1.14)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-5c864103"><p class="cl-5c8632a2"><span class="cl-5c84c9b2">Gender (Woman or female)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">85 (66.4%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">92 (68.1%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">84 (63.2%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">93 (71.5%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">81 (61.8%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">96 (72.7%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">88 (67.2%)</span></p></td>
-<td class="cl-5c864104"><p class="cl-5c8632ac"><span class="cl-5c84c9b2">89 (67.4%)</span></p></td>
+<td class="cl-1a6300f4"><p class="cl-1a62f1cc"><span class="cl-1a6157e0">Gender (Woman or female)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">85 (66.4%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">92 (68.1%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">84 (63.2%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">93 (71.5%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">81 (61.8%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">96 (72.7%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">88 (67.2%)</span></p></td>
+<td class="cl-1a6300f5"><p class="cl-1a62f1d6"><span class="cl-1a6157e0">89 (67.4%)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -4403,6 +4396,237 @@ Table 1: Descriptives of each covariate by strategy
 </div>
 </div>
 <p>Note. Mean (SD) is computed for continuous variables, while n (%) is computed for categorical variables (i.e., gender)</p>
+<p>Each strategy was then regressed onto the covariates. Simple linear regression was used for all covariates (outcomes), except for gender, which was recoded as Woman or Female / Other, and was fit using logistic regression. <a href="#tbl-balance-reg" class="quarto-xref">Table 2</a> shows the regression results. Receiving any strategy was not significantly associated with any of the covariates.</p>
+<div class="cell">
+<details class="code-fold"><summary>Show/hide the code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># balance checks regression of each covariate on each strategy </span></span>
+<span><span class="va">strategy_prefixes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  strategy_gamification <span class="op">=</span> <span class="st">&quot;gam_&quot;</span>,</span>
+<span>  strategy_healthcoach <span class="op">=</span> <span class="st">&quot;hc_&quot;</span>,</span>
+<span>  strategy_presources <span class="op">=</span> <span class="st">&quot;pr_&quot;</span>,</span>
+<span>  strategy_sms <span class="op">=</span> <span class="st">&quot;sms_&quot;</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dt_most</span> <span class="op">&lt;-</span> <span class="va">dt_most</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>gender_binary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu">if_else</span><span class="op">(</span><span class="va">gender</span> <span class="op">==</span> <span class="st">&quot;Woman or female&quot;</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># function to make a row for regression results </span></span>
+<span></span>
+<span><span class="va">make_row</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">v</span>, <span class="va">strategy</span>, <span class="va">is_categorical</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">var_to_use</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="va">is_categorical</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">v</span>, <span class="st">&quot;_binary&quot;</span><span class="op">)</span> <span class="kw">else</span> <span class="va">v</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">is_categorical</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># logistic regression; covariate coded as binary factor </span></span>
+<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">dt_most</span><span class="op">[[</span><span class="va">var_to_use</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">dt_most</span><span class="op">[[</span><span class="va">strategy</span><span class="op">]</span><span class="op">]</span>, family <span class="op">=</span> <span class="va">binomial</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">dt_most</span><span class="op">[[</span><span class="va">var_to_use</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">dt_most</span><span class="op">[[</span><span class="va">strategy</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="va">ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span></span>
+<span>  <span class="fu">tibble</span><span class="op">(</span></span>
+<span>    beta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>    ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">&quot;, &quot;</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">ci</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    p <span class="op">=</span> <span class="fu">fmt_p</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">coefficients</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">run_balance_row</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">v</span>, <span class="va">label</span>, <span class="va">is_categorical</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu">bind_cols</span><span class="op">(</span></span>
+<span>    <span class="fu">tibble</span><span class="op">(</span>variable <span class="op">=</span> <span class="va">label</span><span class="op">)</span>, </span>
+<span>    <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_dfc</a></span><span class="op">(</span><span class="va">strategy_vars</span>, \<span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu">make_row</span><span class="op">(</span><span class="va">v</span>, <span class="va">s</span>, <span class="va">is_categorical</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu">rename_with</span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">strategy_prefixes</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span>, <span class="va">.</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">cont_covars_present</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">cont_covars</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dt_most</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cat_covars_present</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">intersect</a></span><span class="op">(</span><span class="va">cat_covars</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dt_most</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tbl_cont_balance_reg</span> <span class="op">&lt;-</span> <span class="va">cont_covars_present</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">set_names</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">covar_labels</span><span class="op">[</span><span class="va">cont_covars_present</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">imap_dfr</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">v</span>, <span class="va">label</span><span class="op">)</span> <span class="fu">run_balance_row</span><span class="op">(</span><span class="va">v</span>, <span class="va">label</span>, is_categorical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl_cat_balance_reg</span> <span class="op">&lt;-</span> <span class="va">cat_covars_present</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">set_names</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">covar_labels</span><span class="op">)</span><span class="op">[</span><span class="va">cat_covars_present</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">imap_dfr</span><span class="op">(</span>\<span class="op">(</span><span class="va">v</span>, <span class="va">label</span><span class="op">)</span> <span class="fu">run_balance_row</span><span class="op">(</span><span class="va">v</span>, <span class="va">label</span>, is_categorical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tbl_balance_reg</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">tbl_cont_balance_reg</span>, <span class="va">tbl_cat_balance_reg</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">ends_with</span><span class="op">(</span><span class="st">&quot;_beta&quot;</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">&quot;%.2f&quot;</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">flextable</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">typology</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  col_keys <span class="op">=</span> <span class="va">tbl_balance_reg</span><span class="op">$</span><span class="va">col_keys</span>,</span>
+<span>  head1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;&quot;</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">&quot;Gamification&quot;</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">&quot;Health Coaching&quot;</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">&quot;Parent Resources&quot;</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">&quot;Text Messages&quot;</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  head2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;Variable&quot;</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">&quot;B&quot;</span>, <span class="st">&quot;95% CI&quot;</span>, <span class="st">&quot;p&quot;</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl_balance_reg</span> <span class="op">&lt;-</span> <span class="va">tbl_balance_reg</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">set_header_df</span><span class="op">(</span><span class="va">typology</span>, key <span class="op">=</span> <span class="st">&quot;col_keys&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/merge_h.html">merge_h</a></span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1</span>, part <span class="op">=</span> <span class="st">&quot;header&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">my_flextable</span><span class="op">(</span>font_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">hline</span><span class="op">(</span>i <span class="op">=</span> <span class="fl">1</span>, border <span class="op">=</span> <span class="fu">fp_border</span><span class="op">(</span>color <span class="op">=</span> <span class="st">&quot;black&quot;</span>, width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, part <span class="op">=</span> <span class="st">&quot;header&quot;</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">align</span><span class="op">(</span>j <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, align <span class="op">=</span> <span class="st">&quot;center&quot;</span>, part <span class="op">=</span> <span class="st">&quot;all&quot;</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">set_table_properties</span><span class="op">(</span>align <span class="op">=</span> <span class="st">&quot;left&quot;</span>, layout <span class="op">=</span> <span class="st">&quot;autofit&quot;</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl_balance_reg</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details><div id="tbl-balance-reg" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-balance-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 2: Regression results of each strategy on covariates
+</figcaption><div aria-describedby="tbl-balance-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid tabwid_left">
+<style>.cl-1a8b3042{table-layout:auto;}.cl-1a874d60{font-family:'Times New Roman';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1a88f160{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1a88f16a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1a8900ba{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900c4{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900c5{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900c6{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900ce{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900cf{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900d8{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1a8900d9{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="cl-1a8b3042">
+<thead>
+<tr style="overflow-wrap:break-word;">
+<th class="cl-1a8900ba"><p class="cl-1a88f160"><span class="cl-1a874d60"></span></p></th>
+<th colspan="3" class="cl-1a8900c4"><p class="cl-1a88f16a"><span class="cl-1a874d60">Gamification</span></p></th>
+<th colspan="3" class="cl-1a8900c4"><p class="cl-1a88f16a"><span class="cl-1a874d60">Health Coaching</span></p></th>
+<th colspan="3" class="cl-1a8900c4"><p class="cl-1a88f16a"><span class="cl-1a874d60">Parent Resources</span></p></th>
+<th colspan="3" class="cl-1a8900c4"><p class="cl-1a88f16a"><span class="cl-1a874d60">Text Messages</span></p></th>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<th class="cl-1a8900c5"><p class="cl-1a88f160"><span class="cl-1a874d60">Variable</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">B</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">95% CI</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">p</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">B</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">95% CI</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">p</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">B</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">95% CI</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">p</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">B</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">95% CI</span></p></th>
+<th class="cl-1a8900c6"><p class="cl-1a88f16a"><span class="cl-1a874d60">p</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Age</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.04</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.13, 0.21</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.629</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.12</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.28, 0.05</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.160</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.14</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.03, 0.3</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.108</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.04</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.12, 0.21</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.620</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Performance Expectancy</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.04</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.16, 0.08</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.506</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.00</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.12, 0.12</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.953</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.07</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.05, 0.19</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.244</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.06</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.06, 0.18</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.324</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Hedonic Motivations</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.06</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.22, 0.09</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.420</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.04</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.19, 0.12</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.642</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.07</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.08, 0.22</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.361</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.03</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.18, 0.13</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.735</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Habit</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.15</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.32, 0.01</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.069</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.01</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.18, 0.16</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.898</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.09</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.08, 0.25</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.302</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.06</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.23, 0.1</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.443</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Perceived Risk</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.08</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.26, 0.1</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.401</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.05</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.13, 0.23</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.603</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.08</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.26, 0.1</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.386</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.02</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.16, 0.2</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.809</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Health Consciousness</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.03</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.12, 0.18</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.660</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.01</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.16, 0.14</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.905</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.08</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.07, 0.23</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.276</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.07</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.08, 0.22</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.354</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900ce"><p class="cl-1a88f160"><span class="cl-1a874d60">Satisfaction</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.02</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.12, 0.16</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.788</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.09</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.23, 0.06</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.233</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.04</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.11, 0.18</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.601</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.01</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.14, 0.15</span></p></td>
+<td class="cl-1a8900cf"><p class="cl-1a88f16a"><span class="cl-1a874d60">.917</span></p></td>
+</tr>
+<tr style="overflow-wrap:break-word;">
+<td class="cl-1a8900d8"><p class="cl-1a88f160"><span class="cl-1a874d60">Gender</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.04</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.22, 0.3</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">.763</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.19</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.07, 0.45</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">.148</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.25</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.01, 0.51</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">.061</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">0.01</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">-0.25, 0.26</span></p></td>
+<td class="cl-1a8900d9"><p class="cl-1a88f16a"><span class="cl-1a874d60">.966</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
 
 
 
